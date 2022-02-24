@@ -3,18 +3,18 @@ import { Navbar, NavbarBrand } from "reactstrap";
 import Menu from "./Menu";
 import { DISHES } from "../shared/dishes";
 import DishDetail from "./DishdetailComponent";
-
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dishes: DISHES,
+      dish: DISHES,
       selectedDish: null,
     };
   }
-  onDishSelect(dish) {
+
+  onDishSelect(dishId) {
     this.setState({
-      selectedDish: dish,
+      selectedDish: dishId,
     });
   }
 
@@ -23,17 +23,16 @@ class Main extends Component {
       <div>
         <Navbar dark color="primary">
           <div className="container">
-            <NavbarBrand href="/"> Risto-rante Con fusion </NavbarBrand>
+            <NavbarBrand href="/"> Ristorante Con Fusion </NavbarBrand>
           </div>
         </Navbar>
-
         <Menu
-          dishes={this.state.dishes}
+          dishes={this.state.dish}
           onClick={(dishId) => this.onDishSelect(dishId)}
         />
         <DishDetail
           dish={
-            this.state.dishes.filter(
+            this.state.dish.filter(
               (dish) => dish.id === this.state.selectedDish
             )[0]
           }
